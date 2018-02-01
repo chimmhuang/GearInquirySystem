@@ -4,7 +4,7 @@
 <script type="text/javascript" charset="utf-8" src="/js/kindeditor-4.1.10/lang/zh_CN.js"></script>
 <div style="padding:10px 10px 10px 10px">
 	<form id="gearEditForm" class="gearForm" method="post">
-		<input type="hidden" name="id"/>
+		<input type="hidden" name="gearId"/>
 	    <table cellpadding="5">
 	        <tr>
 	            <td>齿轮类目:</td>
@@ -14,9 +14,19 @@
 	            </td>
 	        </tr>
 	        <tr>
-	            <td>齿轮标题:</td>
+	            <td>齿轮名称:</td>
 	            <td><input class="easyui-textbox" type="text" name="title" data-options="required:true" style="width: 280px;"></input></td>
 	        </tr>
+			<tr>
+				<td>齿轮齿数:</td>
+				<td><input class="easyui-numberbox" type="text" name="teeth" data-options="min:0,max:99999999,required:true" />
+				</td>
+			</tr>
+			<tr>
+				<td>齿轮模数:</td>
+				<td><input class="easyui-numberbox" type="text" name="models" data-options="min:0,max:99999999,required:true" />
+				</td>
+			</tr>
 	        <tr>
 	            <td>齿轮图片:</td>
 	            <td>
@@ -37,10 +47,10 @@
 	</div>
 </div>
 <script type="text/javascript">
-	var itemEditEditor ;
+	var gearEditEditor ;
 	$(function(){
 		//实例化编辑器
-		itemEditEditor = TAOTAO.createEditor("#gearEditForm [name=desc]");
+		gearEditEditor = TAOTAO.createEditor("#gearEditForm [name=desc]");
 	});
 	
 	function submitForm(){
@@ -70,7 +80,7 @@
 		
 		$("#gearEditForm [name=itemParams]").val(paramJson);
 		
-		$.post("/rest/item/update",$("#gearEditForm").serialize(), function(data){
+		$.post("/gear/update",$("#gearEditForm").serialize(), function(data){
 			if(data.status == 200){
 				$.messager.alert('提示','齿轮修改成功!','info',function(){
 					$("#itemEditWindow").window('close');

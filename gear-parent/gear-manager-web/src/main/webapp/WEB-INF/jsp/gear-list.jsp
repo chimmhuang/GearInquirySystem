@@ -34,7 +34,7 @@
         text:'新增',
         iconCls:'icon-add',
         handler:function(){
-        	$(".tree-title:contains('新增商品')").parent().click();
+        	$(".tree-title:contains('新增齿轮')").parent().click();
         }
     },{
         text:'编辑',
@@ -82,15 +82,15 @@
         handler:function(){
         	var ids = getSelectionsIds();
         	if(ids.length == 0){
-        		$.messager.alert('提示','未选中商品!');
+        		$.messager.alert('提示','未选中齿轮!');
         		return ;
         	}
-        	$.messager.confirm('确认','确定删除ID为 '+ids+' 的商品吗？',function(r){
+        	$.messager.confirm('确认','确定删除ID为 '+ids+' 的齿轮吗？',function(r){
         	    if (r){
         	    	var params = {"ids":ids};
-                	$.post("/rest/item/delete",params, function(data){
+                	$.post("/gear/delete",params, function(data){
             			if(data.status == 200){
-            				$.messager.alert('提示','删除商品成功!',undefined,function(){
+            				$.messager.alert('提示','删除齿轮成功!',undefined,function(){
             					$("#gearList").datagrid("reload");
             				});
             			}

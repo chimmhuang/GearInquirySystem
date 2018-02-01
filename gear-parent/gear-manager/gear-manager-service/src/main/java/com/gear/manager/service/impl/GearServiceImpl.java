@@ -3,6 +3,7 @@ package com.gear.manager.service.impl;
 import com.gear.common.pojo.EasyUIDataGridResult;
 import com.gear.common.pojo.GearResult;
 import com.gear.manager.service.GearService;
+import com.gear.manager.utils.SubStringIds;
 import com.gear.mapper.TbGearMapper;
 import com.gear.pojo.TbGear;
 import com.gear.pojo.TbGearExample;
@@ -11,6 +12,7 @@ import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -69,5 +71,60 @@ public class GearServiceImpl implements GearService{
     public GearResult getGearDescById(int gearId) {
         TbGear gear = gearMapper.selectByPrimaryKey(gearId);
         return GearResult.ok(gear);
+    }
+
+
+    /**
+     * 添加齿轮
+     * @param gear 齿轮对象
+     * @param desc 齿轮描述
+     * @return GearResult
+     */
+    @Override
+    public GearResult addGear(TbGear gear,String desc) {
+        //补全pojo属性
+        gear.setDescription(desc);
+
+        gear.setCreated(new Date());
+        gear.setUpdated(new Date());
+
+        gearMapper.insert(gear);
+        return GearResult.ok();
+    }
+
+    /**
+     * 更新齿轮
+     * @param gear 齿轮对象
+     * @param desc 齿轮描述
+     * @return GearResult
+     */
+    @Override
+    public GearResult updateGear(TbGear gear, String desc) {
+        //补全pojo属性
+        gear.setDescription(desc);
+
+        gear.setUpdated(new Date());
+
+        TbGearExample example = new TbGearExample();
+        TbGearExample.Criteria criteria = example.createCriteria();
+        criteria.andGearIdEqualTo(gear.getGearId());
+
+        gearMapper.updateByExample(gear,example);
+        return GearResult.ok();
+    }
+
+
+    /**
+     * 删除齿轮
+     * @param ids 选中的齿轮ID
+     * @return GearResult
+     */
+    @Override
+    public GearResult deleteGear(String ids) {
+        List<Integer> idList = SubStringIds.getIdList(ids);
+        for (Integer id : idList) {
+            gearMapper.deleteByPrimaryKey(id);
+        }
+        return GearResult.ok();
     }
 }

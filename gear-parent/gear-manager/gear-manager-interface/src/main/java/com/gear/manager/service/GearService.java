@@ -12,4 +12,7 @@ public interface GearService {
     EasyUIDataGridResult getGearList(int startPage,int pageSize);
     TbGear getGearById(int gearId);
     GearResult getGearDescById(int gearId);
+    GearResult addGear(TbGear gear,String desc);
+    GearResult updateGear(TbGear gear,String desc);
+    GearResult deleteGear(String ids);
 }

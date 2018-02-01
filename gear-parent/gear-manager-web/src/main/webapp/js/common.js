@@ -46,7 +46,7 @@ var TT = TAOTAO = {
     	// 初始化图片上传组件
     	this.initPicUpload(data);
     	// 初始化选择类目组件
-    	this.initItemCat(data);
+    	this.initGearCat(data);
     },
     // 初始化图片上传组件
     initPicUpload : function(data){
@@ -89,8 +89,8 @@ var TT = TAOTAO = {
     },
     
     // 初始化选择类目组件
-    initItemCat : function(data){
-    	$(".selectItemCat").each(function(i,e){
+    initGearCat : function(data){
+    	$(".selectGearCat").each(function(i,e){
     		var _ele = $(e);
     		if(data && data.cid){
     			_ele.after("<span style='margin-left:10px;'>"+data.cid+"</span>");
@@ -109,7 +109,7 @@ var TT = TAOTAO = {
     			    onOpen : function(){
     			    	var _win = this;
     			    	$("ul",_win).tree({
-    			    		url:'/item/cat/list',
+    			    		url:'/gear/cat/list',
     			    		animate:true,
     			    		onClick : function(node){
     			    			if($(this).tree("isLeaf",node.target)){
@@ -174,33 +174,7 @@ var TT = TAOTAO = {
     closeCurrentWindow : function(){
     	$(".panel-tool-close").click();
     },
-    
-    changeItemParam : function(node,formId){
-    	$.getJSON("/item/param/query/itemcatid/" + node.id,function(data){
-			  if(data.status == 200 && data.data){
-				 $("#"+formId+" .params").show();
-				 var paramData = JSON.parse(data.data.paramData);
-				 var html = "<ul>";
-				 for(var i in paramData){
-					 var pd = paramData[i];
-					 html+="<li><table>";
-					 html+="<tr><td colspan=\"2\" class=\"group\">"+pd.group+"</td></tr>";
-					 
-					 for(var j in pd.params){
-						 var ps = pd.params[j];
-						 html+="<tr><td class=\"param\"><span>"+ps+"</span>: </td><td><input autocomplete=\"off\" type=\"text\"/></td></tr>";
-					 }
-					 
-					 html+="</li></table>";
-				 }
-				 html+= "</ul>";
-				 $("#"+formId+" .params td").eq(1).html(html);
-			  }else{
-				 $("#"+formId+" .params").hide();
-				 $("#"+formId+" .params td").eq(1).empty();
-			  }
-		  });
-    },
+
     getSelectionsIds : function (select){
     	var list = $(select);
     	var sels = list.datagrid("getSelections");

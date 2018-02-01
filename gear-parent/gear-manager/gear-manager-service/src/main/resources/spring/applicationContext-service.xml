@@ -33,4 +33,5 @@
     <dubbo:protocol name="dubbo" port="20880"/>
     <!--声明要暴露的服务接口-->
     <dubbo:service interface="com.gear.manager.service.GearService" ref="gearServiceImpl" timeout="300000"/>
+    <dubbo:service interface="com.gear.manager.service.GearCategoryService" ref="gearCatgoryServiceImpl" timeout="300000"/>
 </beans>
