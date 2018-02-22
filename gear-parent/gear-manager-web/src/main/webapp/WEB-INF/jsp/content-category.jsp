@@ -27,7 +27,7 @@ $(function(){
         	var _tree = $(this);
         	if(node.id == 0){
         		// 新增节点
-        		$.post("/content/category/create",{parentId:node.parentId,name:node.text},function(data){
+        		$.post("/gear/category/create",{parentId:node.parentId,name:node.text},function(data){
         			if(data.status == 200){
         				_tree.tree("update",{
             				target : node.target,
@@ -38,15 +38,15 @@ $(function(){
         			}
         		});
         	}else{
-        		$.post("/content/category/update",{id:node.id,name:node.text});
+        		$.post("/gear/category/update",{id:node.id,name:node.text});
         	}
         }
 	});
 });
-function menuHandler(item){
+function menuHandler(gear){
 	var tree = $("#contentCategory");
 	var node = tree.tree("getSelected");
-	if(item.name === "add"){
+	if(gear.name === "add"){
 		tree.tree('append', {
             parent: (node?node.target:null),
             data: [{
@@ -57,12 +57,12 @@ function menuHandler(item){
         }); 
 		var _node = tree.tree('find',0);
 		tree.tree("select",_node.target).tree('beginEdit',_node.target);
-	}else if(item.name === "rename"){
+	}else if(gear.name === "rename"){
 		tree.tree('beginEdit',node.target);
-	}else if(item.name === "delete"){
+	}else if(gear.name === "delete"){
 		$.messager.confirm('确认','确定删除名为 '+node.text+' 的分类吗？',function(r){
 			if(r){
-				$.post("/content/category/delete/",{parentId:node.parentId,id:node.id},function(){
+				$.post("/gear/category/delete/",{parentId:node.parentId,id:node.id},function(){
 					tree.tree("remove",node.target);
 				});	
 			}

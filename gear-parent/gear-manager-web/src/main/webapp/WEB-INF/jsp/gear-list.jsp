@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <table class="easyui-datagrid" id="gearList" title="齿轮列表"
-       data-options="singleSelect:false,collapsible:true,pagination:true,url:'/gear/list',method:'get',pageSize:30,toolbar:toolbar">
+       data-options="singleSelect:false,collapsible:true,pagination:true,url:'/gear/list',method:'get',pageSize:10,toolbar:toolbar">
     <thead>
         <tr>
         	<th data-options="field:'ck',checkbox:true"></th>
@@ -8,6 +8,7 @@
             <th data-options="field:'title',width:200">齿轮名称</th>
             <th data-options="field:'description',width:100">齿轮介绍</th>
             <th data-options="field:'teeth',width:100">齿数</th>
+            <th data-options="field:'diameter',width:100">直径</th>
             <th data-options="field:'models',width:100">模数</th>
             <th data-options="field:'cid',width:100">叶子类目</th>
             <th data-options="field:'created',width:130,align:'center',formatter:TAOTAO.formatDateTime">创建日期</th>

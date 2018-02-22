@@ -2,6 +2,8 @@
 <link href="/js/kindeditor-4.1.10/themes/default/default.css" type="text/css" rel="stylesheet">
 <script type="text/javascript" charset="utf-8" src="/js/kindeditor-4.1.10/kindeditor-all-min.js"></script>
 <script type="text/javascript" charset="utf-8" src="/js/kindeditor-4.1.10/lang/zh_CN.js"></script>
+
+
 <div style="padding:10px 10px 10px 10px">
 	<form id="gearAddForm" class="gearForm" method="post">
 	    <table cellpadding="5">
@@ -18,12 +20,12 @@
 	        </tr>
 			<tr>
 				<td>齿轮齿数:</td>
-				<td><input class="easyui-numberbox" type="text" name="teeth" data-options="min:0,max:99999999,required:true" />
+				<td><input id="gearTeeth" class="easyui-numberbox" type="text" name="teeth" data-options="min:0,max:99999999,required:true" />
 				</td>
 			</tr>
 			<tr>
-				<td>齿轮模数:</td>
-				<td><input class="easyui-numberbox" type="text" name="models" data-options="min:0,max:99999999,required:true" />
+				<td>齿轮分度圆直径(mm):</td>
+				<td><input id="gearDiameter" class="easyui-numberbox" type="text" name="diameter" data-options="min:0,max:99999999,required:true" />
 				</td>
 			</tr>
 	        <tr>

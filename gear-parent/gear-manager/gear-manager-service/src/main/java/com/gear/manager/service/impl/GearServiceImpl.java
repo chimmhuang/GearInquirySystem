@@ -12,6 +12,7 @@ import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
@@ -82,8 +83,10 @@ public class GearServiceImpl implements GearService{
      */
     @Override
     public GearResult addGear(TbGear gear,String desc) {
+
         //补全pojo属性
         gear.setDescription(desc);
+        gear.setModels(calculateModulus(gear));
 
         gear.setCreated(new Date());
         gear.setUpdated(new Date());
@@ -100,16 +103,17 @@ public class GearServiceImpl implements GearService{
      */
     @Override
     public GearResult updateGear(TbGear gear, String desc) {
+
         //补全pojo属性
         gear.setDescription(desc);
-
+        gear.setModels(calculateModulus(gear));
         gear.setUpdated(new Date());
 
         TbGearExample example = new TbGearExample();
         TbGearExample.Criteria criteria = example.createCriteria();
         criteria.andGearIdEqualTo(gear.getGearId());
 
-        gearMapper.updateByExample(gear,example);
+        gearMapper.updateByExampleSelective(gear,example);
         return GearResult.ok();
     }
 
@@ -126,5 +130,21 @@ public class GearServiceImpl implements GearService{
             gearMapper.deleteByPrimaryKey(id);
         }
         return GearResult.ok();
+    }
+
+
+    /**
+     * 计算齿轮模数
+     * @param gear 齿轮对象
+     * @return 模数
+     */
+    public String calculateModulus(TbGear gear){
+        if (Float.parseFloat(gear.getTeeth()) != 0.0 && Float.parseFloat(gear.getTeeth()) != 0.0 ){
+            double medels = Float.parseFloat(gear.getTeeth())*1.0 / Float.parseFloat(gear.getDiameter());
+            BigDecimal b = new BigDecimal(medels);
+            String modelsStr = b.setScale(2,BigDecimal.ROUND_HALF_UP).toString();
+            return modelsStr;
+        }
+        return "0";
     }
 }

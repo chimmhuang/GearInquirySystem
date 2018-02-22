@@ -6,6 +6,7 @@
     <result column="title" property="title" jdbcType="VARCHAR" />
     <result column="description" property="description" jdbcType="VARCHAR" />
     <result column="teeth" property="teeth" jdbcType="VARCHAR" />
+    <result column="diameter" property="diameter" jdbcType="VARCHAR" />
     <result column="models" property="models" jdbcType="VARCHAR" />
     <result column="image" property="image" jdbcType="VARCHAR" />
     <result column="cid" property="cid" jdbcType="INTEGER" />
@@ -71,7 +72,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    gear_id, title, description, teeth, models, image, cid, created, updated
+    gear_id, title, description, teeth, diameter, models, image, cid, created, updated
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.gear.pojo.TbGearExample" >
     select
@@ -104,16 +105,22 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.gear.pojo.TbGear" >
+    <selectKey keyProperty="gearId" resultType="java.lang.Integer" order="AFTER">
+      SELECT LAST_INSERT_ID();
+    </selectKey>
     insert into tb_gear (gear_id, title, description, 
-      teeth, models, image, 
-      cid, created, updated
-      )
+      teeth, diameter, models, 
+      image, cid, created, 
+      updated)
     values (#{gearId,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, 
-      #{teeth,jdbcType=VARCHAR}, #{models,jdbcType=VARCHAR}, #{image,jdbcType=VARCHAR}, 
-      #{cid,jdbcType=INTEGER}, #{created,jdbcType=TIMESTAMP}, #{updated,jdbcType=TIMESTAMP}
-      )
+      #{teeth,jdbcType=VARCHAR}, #{diameter,jdbcType=VARCHAR}, #{models,jdbcType=VARCHAR}, 
+      #{image,jdbcType=VARCHAR}, #{cid,jdbcType=INTEGER}, #{created,jdbcType=TIMESTAMP}, 
+      #{updated,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="com.gear.pojo.TbGear" >
+    <selectKey keyProperty="gearId" resultType="java.lang.Integer" order="AFTER">
+      SELECT LAST_INSERT_ID();
+    </selectKey>
     insert into tb_gear
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="gearId != null" >
@@ -127,6 +134,9 @@
       </if>
       <if test="teeth != null" >
         teeth,
+      </if>
+      <if test="diameter != null" >
+        diameter,
       </if>
       <if test="models != null" >
         models,
@@ -156,6 +166,9 @@
       </if>
       <if test="teeth != null" >
         #{teeth,jdbcType=VARCHAR},
+      </if>
+      <if test="diameter != null" >
+        #{diameter,jdbcType=VARCHAR},
       </if>
       <if test="models != null" >
         #{models,jdbcType=VARCHAR},
@@ -195,6 +208,9 @@
       <if test="record.teeth != null" >
         teeth = #{record.teeth,jdbcType=VARCHAR},
       </if>
+      <if test="record.diameter != null" >
+        diameter = #{record.diameter,jdbcType=VARCHAR},
+      </if>
       <if test="record.models != null" >
         models = #{record.models,jdbcType=VARCHAR},
       </if>
@@ -221,6 +237,7 @@
       title = #{record.title,jdbcType=VARCHAR},
       description = #{record.description,jdbcType=VARCHAR},
       teeth = #{record.teeth,jdbcType=VARCHAR},
+      diameter = #{record.diameter,jdbcType=VARCHAR},
       models = #{record.models,jdbcType=VARCHAR},
       image = #{record.image,jdbcType=VARCHAR},
       cid = #{record.cid,jdbcType=INTEGER},
@@ -241,6 +258,9 @@
       </if>
       <if test="teeth != null" >
         teeth = #{teeth,jdbcType=VARCHAR},
+      </if>
+      <if test="diameter != null" >
+        diameter = #{diameter,jdbcType=VARCHAR},
       </if>
       <if test="models != null" >
         models = #{models,jdbcType=VARCHAR},
@@ -265,6 +285,7 @@
     set title = #{title,jdbcType=VARCHAR},
       description = #{description,jdbcType=VARCHAR},
       teeth = #{teeth,jdbcType=VARCHAR},
+      diameter = #{diameter,jdbcType=VARCHAR},
       models = #{models,jdbcType=VARCHAR},
       image = #{image,jdbcType=VARCHAR},
       cid = #{cid,jdbcType=INTEGER},

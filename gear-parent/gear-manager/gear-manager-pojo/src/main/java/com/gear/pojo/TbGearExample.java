@@ -375,6 +375,76 @@ public class TbGearExample {
             return (Criteria) this;
         }
 
+        public Criteria andDiameterIsNull() {
+            addCriterion("diameter is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andDiameterIsNotNull() {
+            addCriterion("diameter is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andDiameterEqualTo(String value) {
+            addCriterion("diameter =", value, "diameter");
+            return (Criteria) this;
+        }
+
+        public Criteria andDiameterNotEqualTo(String value) {
+            addCriterion("diameter <>", value, "diameter");
+            return (Criteria) this;
+        }
+
+        public Criteria andDiameterGreaterThan(String value) {
+            addCriterion("diameter >", value, "diameter");
+            return (Criteria) this;
+        }
+
+        public Criteria andDiameterGreaterThanOrEqualTo(String value) {
+            addCriterion("diameter >=", value, "diameter");
+            return (Criteria) this;
+        }
+
+        public Criteria andDiameterLessThan(String value) {
+            addCriterion("diameter <", value, "diameter");
+            return (Criteria) this;
+        }
+
+        public Criteria andDiameterLessThanOrEqualTo(String value) {
+            addCriterion("diameter <=", value, "diameter");
+            return (Criteria) this;
+        }
+
+        public Criteria andDiameterLike(String value) {
+            addCriterion("diameter like", value, "diameter");
+            return (Criteria) this;
+        }
+
+        public Criteria andDiameterNotLike(String value) {
+            addCriterion("diameter not like", value, "diameter");
+            return (Criteria) this;
+        }
+
+        public Criteria andDiameterIn(List<String> values) {
+            addCriterion("diameter in", values, "diameter");
+            return (Criteria) this;
+        }
+
+        public Criteria andDiameterNotIn(List<String> values) {
+            addCriterion("diameter not in", values, "diameter");
+            return (Criteria) this;
+        }
+
+        public Criteria andDiameterBetween(String value1, String value2) {
+            addCriterion("diameter between", value1, value2, "diameter");
+            return (Criteria) this;
+        }
+
+        public Criteria andDiameterNotBetween(String value1, String value2) {
+            addCriterion("diameter not between", value1, value2, "diameter");
+            return (Criteria) this;
+        }
+
         public Criteria andModelsIsNull() {
             addCriterion("models is null");
             return (Criteria) this;

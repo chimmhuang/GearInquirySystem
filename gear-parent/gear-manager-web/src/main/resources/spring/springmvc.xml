@@ -44,4 +44,5 @@
     <dubbo:registry protocol="zookeeper" address="${ZOOKEEPER_SERVER}:2181"/>
     <dubbo:reference interface="com.gear.manager.service.GearService" id="gearServiceImpl"/>
     <dubbo:reference interface="com.gear.manager.service.GearCategoryService" id="gearCategoryService"/>
+    <dubbo:reference interface="com.gear.manager.service.GearCatContentService" id="gearCatContentServiceImpl"/>
  </beans>

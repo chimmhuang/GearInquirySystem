@@ -101,6 +101,9 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.gear.pojo.TbGearCat" >
+    <selectKey keyProperty="cid" resultType="java.lang.Integer" order="AFTER">
+      SELECT LAST_INSERT_ID();
+    </selectKey>
     insert into tb_gear_cat (cid, parent_id, name, 
       is_parent, created, updated
       )
@@ -109,6 +112,9 @@
       )
   </insert>
   <insert id="insertSelective" parameterType="com.gear.pojo.TbGearCat" >
+    <selectKey keyProperty="cid" resultType="java.lang.Integer" order="AFTER">
+      SELECT LAST_INSERT_ID();
+    </selectKey>
     insert into tb_gear_cat
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="cid != null" >

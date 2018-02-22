@@ -1,6 +1,5 @@
 package com.gear.dao.test;
 
-import com.gear.mapper.TbGearMapper;
 import com.gear.pojo.TbGear;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;

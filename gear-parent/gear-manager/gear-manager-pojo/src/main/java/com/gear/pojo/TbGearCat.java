@@ -3,7 +3,7 @@ package com.gear.pojo;
 import java.io.Serializable;
 import java.util.Date;
 
-public class TbGearCat implements Serializable{
+public class TbGearCat implements Serializable {
     private Integer cid;
 
     private Integer parentId;

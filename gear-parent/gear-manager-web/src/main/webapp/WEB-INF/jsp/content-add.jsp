@@ -3,38 +3,28 @@
 <script type="text/javascript" charset="utf-8" src="/js/kindeditor-4.1.10/kindeditor-all-min.js"></script>
 <script type="text/javascript" charset="utf-8" src="/js/kindeditor-4.1.10/lang/zh_CN.js"></script>
 <div style="padding:10px 10px 10px 10px">
-	<form id="contentAddForm" class="itemForm" method="post">
-		<input type="hidden" name="categoryId"/>
+	<form id="contentAddForm" class="gearForm" method="post">
+		<input type="hidden" name="cid"/>
 	    <table cellpadding="5">
 	        <tr>
-	            <td>内容标题:</td>
+	            <td>齿轮名称:</td>
 	            <td><input class="easyui-textbox" type="text" name="title" data-options="required:true" style="width: 280px;"></input></td>
 	        </tr>
-	        <tr>
-	            <td>内容子标题:</td>
-	            <td><input class="easyui-textbox" type="text" name="subTitle" style="width: 280px;"></input></td>
-	        </tr>
-	        <tr>
-	            <td>内容描述:</td>
-	            <td><input class="easyui-textbox" name="titleDesc" data-options="multiline:true,validType:'length[0,150]'" style="height:60px;width: 280px;"></input>
-	            </td>
-	        </tr>
-	         <tr>
-	            <td>URL:</td>
-	            <td><input class="easyui-textbox" type="text" name="url" style="width: 280px;"></input></td>
-	        </tr>
+			<tr>
+				<td>齿轮齿数:</td>
+				<td><input class="easyui-numberbox" type="text" name="teeth" data-options="min:0,max:99999999,required:true" />
+				</td>
+			</tr>
+			<tr>
+				<td>齿轮分度圆直径(mm):</td>
+				<td><input class="easyui-numberbox" type="text" name="diameter" data-options="min:0,max:99999999,required:true" />
+				</td>
+			</tr>
 	        <tr>
 	            <td>图片:</td>
 	            <td>
-	                <input type="hidden" name="pic" />
+	                <input type="hidden" name="image" />
 	                <a href="javascript:void(0)" class="easyui-linkbutton onePicUpload">图片上传</a>
-	            </td>
-	        </tr>
-	        <tr>
-	            <td>图片2:</td>
-	            <td>
-	            	<input type="hidden" name="pic2" />
-	            	<a href="javascript:void(0)" class="easyui-linkbutton onePicUpload">图片上传</a>
 	            </td>
 	        </tr>
 	        <tr>
@@ -55,7 +45,7 @@
 	$(function(){
 		contentAddEditor = TT.createEditor("#contentAddForm [name=content]");
 		TT.initOnePicUpload();
-		$("#contentAddForm [name=categoryId]").val($("#contentCategoryTree").tree("getSelected").id);
+		$("#contentAddForm [name=cid]").val($("#contentCategoryTree").tree("getSelected").id);
 	});
 	
 	var contentAddPage  = {

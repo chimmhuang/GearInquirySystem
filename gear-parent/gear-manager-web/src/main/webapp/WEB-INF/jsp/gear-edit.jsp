@@ -23,8 +23,8 @@
 				</td>
 			</tr>
 			<tr>
-				<td>齿轮模数:</td>
-				<td><input class="easyui-numberbox" type="text" name="models" data-options="min:0,max:99999999,required:true" />
+				<td>齿轮分度圆直径(mm):</td>
+				<td><input class="easyui-numberbox" type="text" name="diameter" data-options="min:0,max:99999999,required:true" />
 				</td>
 			</tr>
 	        <tr>

@@ -12,6 +12,8 @@ public class TbGear implements Serializable{
 
     private String teeth;
 
+    private String diameter;
+
     private String models;
 
     private String image;
@@ -52,6 +54,14 @@ public class TbGear implements Serializable{
 
     public void setTeeth(String teeth) {
         this.teeth = teeth == null ? null : teeth.trim();
+    }
+
+    public String getDiameter() {
+        return diameter;
+    }
+
+    public void setDiameter(String diameter) {
+        this.diameter = diameter == null ? null : diameter.trim();
     }
 
     public String getModels() {
