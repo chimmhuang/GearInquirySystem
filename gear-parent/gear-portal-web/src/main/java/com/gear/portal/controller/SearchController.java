@@ -42,7 +42,7 @@ public class SearchController {
 
         model.addAttribute("gearList",result.getGearList());
         model.addAttribute("query",title);
-        model.addAttribute("totalpage",result.getRecordCount());
+        model.addAttribute("totalPages",result.getRecordCount());
         model.addAttribute("page",page);
         return "search";
     }

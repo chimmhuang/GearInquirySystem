@@ -15,6 +15,9 @@
 	.content {
 		padding: 10px 10px 10px 10px;
 	}
+	body{
+		background-color: #E6E6E6;
+	}
 </style>
 </head>
 <body class="easyui-layout">
@@ -34,22 +37,24 @@
 					<li data-options="attributes:{'url':'content'}">分类内容管理</li>
 				</ul>
 			</li>
-			<li>
-				<span>索引库管理</span>
-				<ul>
-					<li data-options="attributes:{'url':'import-index'}">导入索引库</li>
-				</ul>
-			</li>
          </ul>
     </div>
     <div data-options="region:'center',title:''">
     	<div id="tabs" class="easyui-tabs">
 		    <div title="首页" style="padding:20px;">
-		        	
+				<div align="center">
+					<h1 style="color: red;">欢迎使用齿轮管理系统</h1>
+				</div>
+				<div align="center">
+					<img src="/images/gear_1.jpg" width="500px" >
+				</div>
 		    </div>
 		</div>
+		<div align="center">
+			<p style="font-family: 'Microsoft YaHei UI'">2018 &copy 齿轮工艺系统  <a href="https://github.com/chimmhuang/GearInquirySystem" target="_blank" style="text-decoration: none;color: green;">  GitHub源代码 </a></p>
+		</div>
     </div>
-    
+
 <script type="text/javascript">
 $(function(){
 	$('#menu').tree({

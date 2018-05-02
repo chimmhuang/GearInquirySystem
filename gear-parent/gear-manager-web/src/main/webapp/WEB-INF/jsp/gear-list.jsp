@@ -6,7 +6,7 @@
         	<th data-options="field:'ck',checkbox:true"></th>
         	<th data-options="field:'gearId',width:60">齿轮ID</th>
             <th data-options="field:'title',width:200">齿轮名称</th>
-            <th data-options="field:'description',width:100">齿轮介绍</th>
+            <th data-options="field:'description',width:100">齿轮简介</th>
             <th data-options="field:'teeth',width:100">齿数</th>
             <th data-options="field:'diameter',width:100">直径</th>
             <th data-options="field:'models',width:100">模数</th>
@@ -43,11 +43,11 @@
         handler:function(){
         	var ids = getSelectionsIds();
         	if(ids.length == 0){
-        		$.messager.alert('提示','必须选择一个商品才能编辑!');
+        		$.messager.alert('提示','必须选择一个齿轮才能编辑!');
         		return ;
         	}
         	if(ids.indexOf(',') > 0){
-        		$.messager.alert('提示','只能选择一个商品!');
+        		$.messager.alert('提示','只能选择一个齿轮!');
         		return ;
         	}
         	
@@ -63,7 +63,7 @@
 //        				    alert(data.gearId);
 //        				    alert(_data.data.description);
         					//UM.getEditor('itemeEditDescEditor').setContent(_data.data.itemDesc, false);
-        					gearEditEditor.html(_data.data.description);
+        					gearEditEditor.html(_data.data.gearCraftsDesc);
         				}
         			});
         			

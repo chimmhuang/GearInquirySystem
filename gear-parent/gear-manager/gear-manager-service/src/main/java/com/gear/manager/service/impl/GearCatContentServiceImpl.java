@@ -3,8 +3,10 @@ package com.gear.manager.service.impl;
 import com.gear.common.pojo.EasyUIDataGridResult;
 import com.gear.common.pojo.GearResult;
 import com.gear.manager.service.GearCatContentService;
+import com.gear.mapper.TbGearCraftsMapper;
 import com.gear.mapper.TbGearMapper;
 import com.gear.pojo.TbGear;
+import com.gear.pojo.TbGearCrafts;
 import com.gear.pojo.TbGearExample;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
@@ -24,6 +26,8 @@ public class GearCatContentServiceImpl implements GearCatContentService {
 
     @Autowired
     private TbGearMapper gearMapper;
+    @Autowired
+    private TbGearCraftsMapper gearCraftsMapper;
 
     /**
      * 查询该分类下的齿轮列表
@@ -63,12 +67,22 @@ public class GearCatContentServiceImpl implements GearCatContentService {
     @Override
     public GearResult addContent(TbGear gear,String content) {
         //补全pojo属性
-        gear.setDescription(content);
         gear.setCreated(new Date());
         gear.setUpdated(new Date());
 
-        //插入到对应的Tb_Content表
+        //插入到对应的齿轮表
         gearMapper.insert(gear);
+
+        //创建齿轮工艺对象
+        TbGearCrafts gearCrafts = new TbGearCrafts();
+        //补全pojo属性
+        gearCrafts.setGearId(gear.getGearId());
+        gearCrafts.setGearCraftsDesc(content);
+        gearCrafts.setCreated(new Date());
+        gearCrafts.setUpdated(new Date());
+
+        //插入到对应的齿轮工艺表中
+        gearCraftsMapper.insert(gearCrafts);
 
         return GearResult.ok();
     }
@@ -81,12 +95,20 @@ public class GearCatContentServiceImpl implements GearCatContentService {
      */
     @Override
     public GearResult editContent(TbGear gear, String content) {
-        //添加更新时间
+        //添加齿轮更新时间
         gear.setUpdated(new Date());
-        gear.setDescription(content);
+
+        //创建齿轮工艺对象
+        TbGearCrafts gearCrafts = new TbGearCrafts();
+        //补全pojo对象
+        gearCrafts.setUpdated(new Date());
+        gearCrafts.setGearCraftsDesc(content);
+        gearCrafts.setGearId(gear.getGearId());
 
         //执行更新操作
         gearMapper.updateByPrimaryKeySelective(gear);
+        gearCraftsMapper.updateByPrimaryKeySelective(gearCrafts);
+
 
         return GearResult.ok();
 

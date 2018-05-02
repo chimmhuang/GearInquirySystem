@@ -9,7 +9,7 @@
 	        <tr>
 	            <td>齿轮类目:</td>
 	            <td>
-	            	<a href="javascript:void(0)" class="easyui-linkbutton selectItemCat">选择类目</a>
+	            	<a href="javascript:void(0)" class="easyui-linkbutton selectGearCat">选择类目</a>
 	            	<input type="hidden" name="cid" style="width: 280px;"></input>	
 	            </td>
 	        </tr>
@@ -17,6 +17,10 @@
 	            <td>齿轮名称:</td>
 	            <td><input class="easyui-textbox" type="text" name="title" data-options="required:true" style="width: 280px;"></input></td>
 	        </tr>
+			<tr>
+				<td>齿轮简介:</td>
+				<td><input class="easyui-textbox" type="text" name="description"  style="width: 280px;"></input></td>
+			</tr>
 			<tr>
 				<td>齿轮齿数:</td>
 				<td><input class="easyui-numberbox" type="text" name="teeth" data-options="min:0,max:99999999,required:true" />
@@ -35,7 +39,7 @@
 	            </td>
 	        </tr>
 	        <tr>
-	            <td>齿轮描述:</td>
+	            <td>齿轮工艺介绍:</td>
 	            <td>
 	                <textarea style="width:800px;height:300px;visibility:hidden;" name="desc"></textarea>
 	            </td>
@@ -58,33 +62,14 @@
 			$.messager.alert('提示','表单还未填写完成!');
 			return ;
 		}
-		
-		var paramJson = [];
-		$("#gearEditForm .params li").each(function(i,e){
-			var trs = $(e).find("tr");
-			var group = trs.eq(0).text();
-			var ps = [];
-			for(var i = 1;i<trs.length;i++){
-				var tr = trs.eq(i);
-				ps.push({
-					"k" : $.trim(tr.find("td").eq(0).find("span").text()),
-					"v" : $.trim(tr.find("input").val())
-				});
-			}
-			paramJson.push({
-				"group" : group,
-				"params": ps
-			});
-		});
-		paramJson = JSON.stringify(paramJson);
-		
-		$("#gearEditForm [name=itemParams]").val(paramJson);
-		
+
+        //同步文本框中的商品描述
+        gearEditEditor.sync();
 		$.post("/gear/update",$("#gearEditForm").serialize(), function(data){
 			if(data.status == 200){
 				$.messager.alert('提示','齿轮修改成功!','info',function(){
-					$("#itemEditWindow").window('close');
-					$("#itemList").datagrid("reload");
+					$("#gearEditWindow").window('close');
+					$("#gearList").datagrid("reload");
 				});
 			}
 		});

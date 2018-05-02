@@ -14,7 +14,7 @@
 		            <th data-options="field:'teeth',width:100">齿轮齿数</th>
 		            <th data-options="field:'diameter',width:100">直径</th>
 		            <th data-options="field:'models',width:100">齿轮模数</th>
-		            <th data-options="field:'description',width:120">齿轮描述</th>
+		            <th data-options="field:'description',width:120">齿轮简介</th>
 		            <th data-options="field:'image',width:50,align:'center',formatter:TAOTAO.formatUrl">图片</th>
 		            <th data-options="field:'created',width:130,align:'center',formatter:TAOTAO.formatDateTime">创建日期</th>
 		            <th data-options="field:'updated',width:130,align:'center',formatter:TAOTAO.formatDateTime">更新日期</th>
@@ -89,7 +89,7 @@ var contentListToolbar = [{
 					$("#contentEditForm [name=image]").after("<a href='"+data.image+"' target='_blank'><img src='"+data.image+"' width='80' height='50'/></a>");
 				}
 				
-				contentEditEditor.html(data.description);
+				contentEditEditor.html(data.gearCraftsDesc);
 			}
 		});    	
     }

@@ -4,6 +4,7 @@ import com.gear.common.pojo.EasyUIDataGridResult;
 import com.gear.common.pojo.GearResult;
 import com.gear.manager.service.GearService;
 import com.gear.pojo.TbGear;
+import com.gear.pojo.TbGearCrafts;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -57,7 +58,8 @@ public class GearController {
     @RequestMapping("/gear/desc/{gearId}")
     @ResponseBody
     public GearResult getGearDescById(@PathVariable("gearId") Integer gearId){
-        GearResult result = gearService.getGearDescById(gearId);
+        TbGearCrafts gearCrafts = gearService.getGearDescById(gearId);
+        GearResult result = new GearResult(gearCrafts);
         return result;
     }
 

@@ -22,12 +22,21 @@
         <property name="suffix" value=".jsp" />
     </bean>
 
+    <!--配置拦截器-->
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/**"/>
+            <bean class="com.gear.manager.interceptor.LoginInterceptor"/>
+        </mvc:interceptor>
+    </mvc:interceptors>
+
     <!--配置包扫描器，扫描带有@Controller注解的类-->
     <context:component-scan base-package="com.gear.manager.controller"/>
 
     <!-- 配置资源映射、若不配置，无法加载css和js-->
     <mvc:resources location="/css/" mapping="/css/**"/>
     <mvc:resources location="/js/" mapping="/js/**"/>
+    <mvc:resources location="/images/" mapping="/images/**"/>
 
     <!-- 配置文件上传解析器 -->
     <bean id="multipartResolver"
@@ -45,4 +54,5 @@
     <dubbo:reference interface="com.gear.manager.service.GearService" id="gearServiceImpl"/>
     <dubbo:reference interface="com.gear.manager.service.GearCategoryService" id="gearCategoryService"/>
     <dubbo:reference interface="com.gear.manager.service.GearCatContentService" id="gearCatContentServiceImpl"/>
+    <dubbo:reference interface="com.gear.sso.service.UserService" id="userServiceImpl"/>
  </beans>

@@ -10,15 +10,15 @@ public class TbGear implements Serializable{
 
     private String description;
 
-    private String teeth;
+    private String teeth = "0";
 
-    private String diameter;
+    private String diameter = "0";
 
-    private String models;
+    private String models = "0";
 
     private String image;
 
-    private Integer cid;
+    private Integer cid = 1;
 
     private Date created;
 

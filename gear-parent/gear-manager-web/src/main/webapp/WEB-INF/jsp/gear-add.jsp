@@ -10,7 +10,7 @@
 	        <tr>
 	            <td>齿轮类目:</td>
 	            <td>
-	            	<a href="javascript:void(0)" class="easyui-linkbutton selectItemCat">选择类目</a>
+	            	<a href="javascript:void(0)" class="easyui-linkbutton selectGearCat">选择类目</a>
 	            	<input type="hidden" name="cid" style="width: 280px;"></input>
 	            </td>
 	        </tr>
@@ -19,15 +19,20 @@
 	            <td><input class="easyui-textbox" type="text" name="title" data-options="required:true" style="width: 280px;"></input></td>
 	        </tr>
 			<tr>
+				<td>齿轮简介:</td>
+				<td><input class="easyui-textbox" type="text" name="description" style="width: 280px;"></input></td>
+			</tr>
+			<tr>
 				<td>齿轮齿数:</td>
-				<td><input id="gearTeeth" class="easyui-numberbox" type="text" name="teeth" data-options="min:0,max:99999999,required:true" />
+				<td><input id="gearTeeth" class="easyui-numberbox" type="text" name="teeth" data-options="min:0,max:99999999" />
 				</td>
 			</tr>
 			<tr>
 				<td>齿轮分度圆直径(mm):</td>
-				<td><input id="gearDiameter" class="easyui-numberbox" type="text" name="diameter" data-options="min:0,max:99999999,required:true" />
+				<td><input id="gearDiameter" class="easyui-numberbox" type="text" name="diameter" data-options="min:0,max:99999999" />
 				</td>
 			</tr>
+
 	        <tr>
 	            <td>齿轮图片:</td>
 	            <td>
@@ -36,13 +41,12 @@
 	            </td>
 	        </tr>
 	        <tr>
-	            <td>齿轮描述:</td>
+	            <td>齿轮工艺介绍:</td>
 	            <td>
 	                <textarea style="width:800px;height:300px;visibility:hidden;" name="desc"></textarea>
 	            </td>
 	        </tr>
 	    </table>
-	    <input type="hidden" name="gearParams"/>
 	</form>
 	<div style="padding:5px">
 	    <a href="javascript:void(0)" class="easyui-linkbutton" onclick="submitForm()">提交</a>

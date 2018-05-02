@@ -5,14 +5,14 @@ import java.util.List;
 
 public class SearchResult implements Serializable{
 
-    private List<TbGear> gearList;
+    private List<SearchGear> gearList;
     private long recordCount;//总记录数
 
-    public List<TbGear> getGearList() {
+    public List<SearchGear> getGearList() {
         return gearList;
     }
 
-    public void setGearList(List<TbGear> gearList) {
+    public void setGearList(List<SearchGear> gearList) {
         this.gearList = gearList;
     }
 

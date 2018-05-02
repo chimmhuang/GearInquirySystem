@@ -12,6 +12,9 @@
         <module>gear-manager</module>
         <module>gear-manager-web</module>
         <module>gear-portal-web</module>
+        <module>gear-item-web</module>
+        <module>gear-sso</module>
+        <module>gear-sso-web</module>
     </modules>
     <packaging>pom</packaging>
 

@@ -12,6 +12,10 @@
 	            <td><input class="easyui-textbox" type="text" name="title" data-options="required:true" style="width: 280px;"></input></td>
 	        </tr>
 			<tr>
+				<td>内容简介:</td>
+				<td><input class="easyui-textbox" type="text" name="description" style="width: 280px;"></input></td>
+			</tr>
+			<tr>
 				<td>齿轮齿数:</td>
 				<td><input class="easyui-numberbox" type="text" name="teeth" data-options="min:0,max:99999999,required:true" />
 				</td>
@@ -29,7 +33,7 @@
 				</td>
 			</tr>
 	        <tr>
-	            <td>内容:</td>
+	            <td>齿轮工艺介绍:</td>
 	            <td>
 	                <textarea style="width:800px;height:300px;visibility:hidden;" name="content"></textarea>
 	            </td>

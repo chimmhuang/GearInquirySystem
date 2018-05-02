@@ -4,9 +4,9 @@ import com.gear.common.pojo.EasyUIDataGridResult;
 import com.gear.common.pojo.GearResult;
 import com.gear.manager.service.GearService;
 import com.gear.manager.utils.SubStringIds;
+import com.gear.mapper.TbGearCraftsMapper;
 import com.gear.mapper.TbGearMapper;
-import com.gear.pojo.TbGear;
-import com.gear.pojo.TbGearExample;
+import com.gear.pojo.*;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +24,9 @@ public class GearServiceImpl implements GearService{
 
     @Autowired
     private TbGearMapper gearMapper;
+
+    @Autowired
+    private TbGearCraftsMapper gearCraftsMapper;
 
 
     /**
@@ -69,9 +72,9 @@ public class GearServiceImpl implements GearService{
      * @return GearResult
      */
     @Override
-    public GearResult getGearDescById(int gearId) {
-        TbGear gear = gearMapper.selectByPrimaryKey(gearId);
-        return GearResult.ok(gear);
+    public TbGearCrafts getGearDescById(int gearId) {
+        TbGearCrafts gearCrafts = gearCraftsMapper.selectByPrimaryKey(gearId);
+        return gearCrafts;
     }
 
 
@@ -84,14 +87,22 @@ public class GearServiceImpl implements GearService{
     @Override
     public GearResult addGear(TbGear gear,String desc) {
 
-        //补全pojo属性
-        gear.setDescription(desc);
+        //补全齿轮pojo属性
         gear.setModels(calculateModulus(gear));
 
         gear.setCreated(new Date());
         gear.setUpdated(new Date());
 
         gearMapper.insert(gear);
+
+        //创建齿轮工艺对象
+        TbGearCrafts gearCrafts = new TbGearCrafts();
+        //补全齿轮工艺pojo属性
+        gearCrafts.setGearId(gear.getGearId());
+        gearCrafts.setGearCraftsDesc(desc);
+        gearCrafts.setCreated(new Date());
+        gearCrafts.setUpdated(new Date());
+        gearCraftsMapper.insert(gearCrafts);
         return GearResult.ok();
     }
 
@@ -104,8 +115,8 @@ public class GearServiceImpl implements GearService{
     @Override
     public GearResult updateGear(TbGear gear, String desc) {
 
-        //补全pojo属性
-        gear.setDescription(desc);
+        //更新齿轮基本信息
+        //补全齿轮pojo属性
         gear.setModels(calculateModulus(gear));
         gear.setUpdated(new Date());
 
@@ -114,6 +125,19 @@ public class GearServiceImpl implements GearService{
         criteria.andGearIdEqualTo(gear.getGearId());
 
         gearMapper.updateByExampleSelective(gear,example);
+
+
+        //更新齿轮工艺信息
+        //补全齿轮工艺信息
+        TbGearCrafts crafts = new TbGearCrafts();
+        crafts.setUpdated(new Date());
+        crafts.setGearCraftsDesc(desc);
+
+        TbGearCraftsExample craftsExample = new TbGearCraftsExample();
+        TbGearCraftsExample.Criteria craftsExampleCriteria = craftsExample.createCriteria();
+        craftsExampleCriteria.andGearIdEqualTo(gear.getGearId());
+
+        gearCraftsMapper.updateByExampleSelective(crafts,craftsExample);
         return GearResult.ok();
     }
 
